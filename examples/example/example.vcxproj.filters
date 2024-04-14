@@ -13,10 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="fluxcpp">
+      <UniqueIdentifier>{aefd4004-1771-40ab-a1dd-e230dd2d382a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fluxcpp\core">
+      <UniqueIdentifier>{2bbc6507-1849-4e3d-8c20-054146de76ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="example.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\fluxcpp\action.hpp">
+      <Filter>fluxcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\fluxcpp\dispatcher.hpp">
+      <Filter>fluxcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\fluxcpp\store.hpp">
+      <Filter>fluxcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\fluxcpp\core\trait.hpp">
+      <Filter>fluxcpp\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\flux.hpp">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
