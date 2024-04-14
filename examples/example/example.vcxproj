@@ -130,6 +130,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="example.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="player_battle.cpp" />
+    <ClCompile Include="player_info.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\flux.hpp" />
@@ -137,6 +140,10 @@
     <ClInclude Include="..\..\include\fluxcpp\core\trait.hpp" />
     <ClInclude Include="..\..\include\fluxcpp\dispatcher.hpp" />
     <ClInclude Include="..\..\include\fluxcpp\store.hpp" />
+    <ClInclude Include="actions.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="player_battle.h" />
+    <ClInclude Include="player_info.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
