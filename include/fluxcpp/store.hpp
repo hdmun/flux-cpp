@@ -4,30 +4,49 @@
 #include <list>
 #include <functional>
 
+#include "fluxcpp/core/trait.hpp"
 #include "fluxcpp/action.hpp"
 
 namespace fluxcpp
 {
 
-struct IStoreContainer
-{
-    virtual void Dispatch(std::shared_ptr<IActionPayload> payload) = 0;
-};
-
-template<typename T>
-class StoreContainer : public IStoreContainer
+class StoreHandler : public Trait
 {
 public:
-    void Listen(std::function<void(T*)> handler)
+    template<typename T>
+    StoreHandler(T handler)
+        : Trait(handler)
     {
     }
 
-    virtual void Dispatch(std::shared_ptr<IActionPayload> payload)
+    template<typename T>
+    void Invoke(T* action)
     {
+        auto handler = cast<std::function<void(T*)> >();
+        handler(action);
+    }
+};
+
+class StoreContainer
+{
+public:
+    template<typename T>
+    void Listen(std::function<void(T*)> handler)
+    {
+        _handlers.push_back(StoreHandler(std::move(handler)));
+    }
+
+    template<typename T>
+    void Dispatch(std::shared_ptr<T> payload)
+    {
+        for (auto& handler : _handlers)
+        {
+            handler.Invoke(payload.get());
+        }
     }
 
 private:
-    std::list<std::function<void(T*)> > _handlers;
+    std::list<StoreHandler> _handlers;
 };
 
 } // end of namespace fluxcpp

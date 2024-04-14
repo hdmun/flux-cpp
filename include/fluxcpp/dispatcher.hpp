@@ -27,16 +27,13 @@ public:
         auto itStore = _stores.find(typeHashId);
         if (_stores.end() == itStore)
         {
-            std::unique_ptr<StoreContainer<T> > store = std::make_unique<StoreContainer<T> >();
+            auto store = std::make_unique<StoreContainer>();
             store->Listen(handler);
             _stores[typeHashId] = std::move(store);
+            return;
         }
-        else
-        {
-            // TODO : 추상화 하지 않고 사용하는 방법이 없을까?
-            StoreContainer<T>* store = static_cast<StoreContainer<T>*>(itStore->second.get());
-            // store.Listen(handler);
-        }
+
+        itStore->second->Listen(handler);
     }
 
     template<typename T>
@@ -72,7 +69,7 @@ public:
 
 private:
     concurrency::concurrent_unordered_map<
-        ActionId, std::unique_ptr<IStoreContainer> > _stores;
+        ActionId, std::unique_ptr<StoreContainer> > _stores;
     concurrency::concurrent_queue<std::function<void()> > _actions;
 };
 
